@@ -1,15 +1,17 @@
 ---
 export interface Props {
-	currentLang?: 'en' | 'ta';
+	currentLang?: "en" | "ta";
+	currentPath?: string;
 }
 
-const { currentLang = 'en' } = Astro.props;
-const nextLang = currentLang === 'en' ? 'ta' : 'en';
-const labels: Record<'en' | 'ta', string> = {
-	en: 'English',
-	ta: 'தமிழ்'
+const { currentLang = "en", currentPath = "/" } = Astro.props;
+const nextLang = currentLang === "en" ? "ta" : "en";
+const labels: Record<"en" | "ta", string> = {
+	en: "English",
+	ta: "தமிழ்"
 };
-const destination = currentLang === 'en' ? '/ta' : '/en';
+const cleanedPath = currentPath === "/" ? "" : currentPath.replace(/^\/ta/, "");
+const destination = nextLang === "ta" ? `/ta${cleanedPath || ""}` : cleanedPath || "/";
 ---
 
 <a
@@ -17,5 +19,5 @@ const destination = currentLang === 'en' ? '/ta' : '/en';
 	aria-label={`Switch site language to ${labels[nextLang]}`}
 	href={destination}
 >
-	<span class={nextLang === 'ta' ? 'font-tamil text-sm' : ''}>{labels[nextLang]}</span>
+	<span class={nextLang === "ta" ? "font-tamil text-sm" : ""}>{labels[nextLang]}</span>
 </a>

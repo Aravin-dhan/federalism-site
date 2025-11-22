@@ -1,0 +1,45 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Hero from '../../components/Hero.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+import { getCollection } from 'astro:content';
+
+const articles = await getCollection('articles');
+const published = articles
+	.filter((entry) => !entry.data.draft && entry.data.pubDate <= new Date())
+	.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+
+const readingTimeFrom = (body) => {
+	const words = body.split(/\s+/).length;
+	return `${Math.max(1, Math.round(words / 225))} நிமிட வாசிப்பு`;
+};
+---
+
+<Layout lang="ta" title="பாலமுருகன் | நாட்டை காக்கும் குறிப்பு">
+	<Hero
+		lang="ta"
+		title="மாநிலங்கள் சுதந்திரமாக இருந்தால் மட்டுமே ஒன்றியம் பலமாகும்"
+		subtitle="நான் பாலமுருகன். 'Federalism Under Siege' எனது தனிப்பட்ட ஆய்வு பதிவுகள்."
+		excerpt="தமிழகத்தின் கூட்டாட்சி இயக்கத்தைப் பற்றி நான் சேகரிக்கும் ஆராய்ச்சி, உரைகள், மற்றும் களக்குறிப்புகள் அனைத்தும் இங்கே."
+		ctaLabel="எழுத்துகளைப் பார்க்க"
+		ctaHref="/ta/writings"
+		secondaryCtaLabel="ஊடக பட்டியல்"
+		secondaryCtaHref="/ta/interviews"
+	/>
+	<section class="mt-16" aria-labelledby="ta-latest">
+		<h2 id="ta-latest" class="font-display text-3xl text-slate" lang="ta">சமீபத்திய குறிப்புகள்</h2>
+		<div class="mt-8 grid gap-8 md:grid-cols-2">
+			{published.slice(0, 4).map((post) => (
+				<ArticleCard
+					title={post.data.title}
+					summary={post.data.description}
+					date={post.data.pubDate.toISOString()}
+					readTime={readingTimeFrom(post.body)}
+					heroImage={post.data.heroImage}
+					href={`/articles/${post.slug}`}
+					lang={post.data.lang}
+				/>
+			))}
+		</div>
+	</section>
+</Layout>

@@ -1,0 +1,36 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ArticleCard from '../components/ArticleCard.astro';
+import { getCollection } from 'astro:content';
+
+const articles = await getCollection('articles');
+const published = articles
+	.filter((entry) => !entry.data.draft && entry.data.pubDate <= new Date())
+	.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+
+const readingTimeFrom = (body) => {
+	const words = body.split(/\s+/).length;
+	return `${Math.max(1, Math.round(words / 225))} min read`;
+};
+---
+
+<Layout title="Balamurugan | Writings" description="Collected essays from Federalism Under Siege.">
+	<section class="space-y-4">
+		<p class="text-sm uppercase tracking-[0.3em] text-slate/70">Balamurugan</p>
+		<h1 class="font-display text-4xl text-slate">Writings</h1>
+		<p class="text-base text-slate/80">Long-form analysis, field diaries, and speeches that eventually form the chapters of <em>Federalism Under Siege</em>.</p>
+	</section>
+	<section class="mt-10 grid gap-8 md:grid-cols-2">
+		{published.map((post) => (
+			<ArticleCard
+				title={post.data.title}
+				summary={post.data.description}
+				date={post.data.pubDate.toISOString()}
+				readTime={readingTimeFrom(post.body)}
+				heroImage={post.data.heroImage}
+				href={`/articles/${post.slug}`}
+				lang={post.data.lang}
+			/>
+		))}
+	</section>
+</Layout>

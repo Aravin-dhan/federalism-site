@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import heroImage from '../assets/hero-bw.svg';
+import heroImage from '../assets/balamurugan-hero.svg';
 
 export interface Props {
 	title?: string;
@@ -8,7 +8,10 @@ export interface Props {
 	excerpt?: string;
 	ctaLabel?: string;
 	ctaHref?: string;
+	secondaryCtaLabel?: string;
+	secondaryCtaHref?: string;
 	ticker?: string;
+	lang?: 'en' | 'ta';
 }
 
 const {
@@ -16,12 +19,15 @@ const {
 	subtitle = 'A research-grade blog for Tamil federal futures.',
 	excerpt = 'Data, archives, and political imagination from the frontlines of cooperative federalism.',
 	ctaLabel = 'Read the Manifesto',
-	ctaHref = '/articles',
-	ticker = 'The 29-Paise Rupee: Anatomy of a Fiscal Heist (Released Nov 22)'
-} = Astro.props;
+	ctaHref = '/writings',
+	secondaryCtaLabel = 'Download Dossiers',
+	secondaryCtaHref = '/resources',
+	ticker = 'The 29-Paise Rupee: Anatomy of a Fiscal Heist (Released Nov 22)',
+	lang = 'en'
+} = Astro.props as Props;
 ---
 
-<section class="border-t-4 border-accent-red bg-paper" aria-labelledby="hero-heading">
+<section class="border-t-4 border-accent-red bg-paper" aria-labelledby="hero-heading" lang={lang}>
 	<div class="mx-auto grid max-w-6xl grid-cols-1 items-stretch gap-8 px-4 py-12 md:grid-cols-2">
 		<div class="flex flex-col justify-center">
 			<p class="text-sm uppercase tracking-[0.2em] text-highlight-gold">Federal Futures</p>
@@ -39,9 +45,9 @@ const {
 				</a>
 				<a
 					class="inline-flex items-center justify-center border border-slate px-6 py-3 font-semibold uppercase tracking-widest text-slate transition hover:border-accent-red hover:text-accent-red"
-					href="/resources"
+					href={secondaryCtaHref}
 				>
-					Download Dossiers
+					{secondaryCtaLabel}
 				</a>
 			</div>
 		</div>

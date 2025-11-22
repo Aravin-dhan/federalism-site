@@ -1,0 +1,13 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getEntry } from 'astro:content';
+
+const about = await getEntry('pages', 'about');
+---
+
+<Layout lang="ta" title="பாலமுருகன் பற்றி">
+	<article class="prose max-w-none text-slate" lang="ta">
+		<h1 class="font-display text-4xl text-slate">பாலமுருகன் பற்றி</h1>
+		<div class="mt-6 space-y-4" innerHTML={about.body} />
+	</article>
+</Layout>

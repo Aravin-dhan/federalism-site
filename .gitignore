@@ -20,6 +20,9 @@ pnpm-debug.log*
 # vercel build output
 .vercel/
 
+# generated exports
+exports/
+
 # macOS-specific files
 .DS_Store
 

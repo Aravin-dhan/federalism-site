@@ -1,0 +1,28 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const resources = await getCollection('resources');
+const ordered = resources.sort((a, b) => b.data.publishedOn.getTime() - a.data.publishedOn.getTime());
+---
+
+<Layout title="Balamurugan | Resources" description="Downloadable dossiers, books, and working papers.">
+	<section class="space-y-4">
+		<p class="text-sm uppercase tracking-[0.3em] text-slate/70">Federalism Under Siege</p>
+		<h1 class="font-display text-4xl text-slate">Resources</h1>
+		<p class="text-base text-slate/80">Offline-first PDFs, slides, and book chapters. Every file mirrors to exports for the offline archive.</p>
+	</section>
+	<ul class="mt-10 grid gap-6">
+		{ordered.map((resource) => (
+			<li class="border border-slate/20 bg-white p-6" lang={resource.data.lang}>
+				<h2 class="font-display text-2xl text-slate">
+					<a class="hover:text-accent-red" href={resource.data.file}>{resource.data.title}</a>
+				</h2>
+				<p class="mt-2 text-sm uppercase tracking-[0.3em] text-slate/70">
+					{resource.data.fileType.toUpperCase()} · {resource.data.publishedOn.toLocaleDateString('en-IN', { dateStyle: 'medium' })}
+				</p>
+				<p class="mt-3 text-base text-slate/80">{resource.data.description}</p>
+			</li>
+		))}
+	</ul>
+</Layout>

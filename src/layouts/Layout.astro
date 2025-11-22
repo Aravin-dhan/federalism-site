@@ -1,18 +1,20 @@
 ---
-import '../styles/global.css';
-import Navbar from '../components/Navbar.astro';
+import "../styles/global.css";
+import Navbar from "../components/Navbar.astro";
 
 type LayoutProps = {
 	title?: string;
 	description?: string;
-	lang?: 'en' | 'ta';
+	lang?: "en" | "ta";
 };
 
 const {
-	title = 'Federalism Under Siege',
-	description = 'A Dravidian modernist publication platform.',
-	lang = 'en'
+	title = "Balamurugan | Federalism Under Siege",
+	description = "Personal research log and public diary of Balamurugan.",
+	lang = "en"
 } = Astro.props as LayoutProps;
+
+const currentPath = Astro.url?.pathname ?? "/";
 ---
 
 <!doctype html>
@@ -38,7 +40,7 @@ const {
 		>
 			Skip to main content
 		</a>
-		<Navbar lang={lang} />
+		<Navbar lang={lang} path={currentPath} />
 		<main id="main" class="flex-1 bg-cream px-4 py-10">
 			<div class="mx-auto w-full max-w-6xl">
 				<slot />
@@ -50,7 +52,7 @@ const {
 					நாடு, மக்கள், சமத்துவம்
 				</p>
 				<p class="text-brand-cream opacity-80">
-					© {new Date().getFullYear()} Federalism Under Siege. MIT Licensed. Crafted with Astro, Tailwind, and Keystatic.
+					© {new Date().getFullYear()} Balamurugan · Federalism Under Siege. MIT Licensed.
 				</p>
 			</div>
 		</footer>

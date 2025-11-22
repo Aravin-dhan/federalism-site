@@ -1,0 +1,14 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getEntry } from 'astro:content';
+
+const about = await getEntry('pages', 'about');
+---
+
+<Layout title="Balamurugan | About" description="Who I am and why Federalism Under Siege exists.">
+	<article class="prose max-w-none text-slate">
+		<h1 class="font-display text-4xl text-slate">{about.data.title}</h1>
+		<p class="mt-3 text-slate/70 text-sm uppercase tracking-[0.3em]">Personal Note</p>
+		<div class="mt-6 space-y-4" innerHTML={about.body} />
+	</article>
+</Layout>

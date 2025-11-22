@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-labelledby="heroTitle heroDesc">
+  <title id="heroTitle">Portrait of Balamurugan</title>
+  <desc id="heroDesc">Abstract layered illustration referencing Dravidian colors.</desc>
+  <rect width="1200" height="800" fill="#F7F5F0" />
+  <circle cx="350" cy="420" r="220" fill="#B93632" opacity="0.15" />
+  <circle cx="370" cy="360" r="150" fill="#2C2C2C" opacity="0.7" />
+  <rect x="580" y="180" width="350" height="420" rx="40" fill="#2C2C2C" opacity="0.9" />
+  <rect x="610" y="210" width="290" height="360" rx="30" fill="#F7F5F0" opacity="0.9" />
+  <path d="M610 600 L1060 520 L1100 620 L610 700 Z" fill="#C5A059" opacity="0.4" />
+  <text x="50%" y="120" text-anchor="middle" font-family="'Playfair Display', serif" font-size="72" fill="#2C2C2C">Federalism Under Siege</text>
+</svg>
