@@ -19,6 +19,8 @@ const keystaticNoExternal = [
   '@urql/core'
 ];
 
+const directionShim = new URL('./src/shims/direction-default.js', import.meta.url).pathname;
+
 // https://astro.build/config
 export default defineConfig({
   adapter: vercel(),
@@ -38,7 +40,9 @@ export default defineConfig({
     resolve: {
       alias: {
         'lodash/debounce': 'lodash-es/debounce',
-        'lodash/debounce.js': 'lodash-es/debounce'
+        'lodash/debounce.js': 'lodash-es/debounce',
+        direction: directionShim,
+        'direction/index.js': directionShim
       }
     }
   },
