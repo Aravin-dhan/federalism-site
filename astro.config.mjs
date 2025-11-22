@@ -9,6 +9,16 @@ import vercel from '@astrojs/vercel';
 
 import react from '@astrojs/react';
 
+const keystaticNoExternal = [
+  /^@keystatic\//,
+  /^@keystar\//,
+  /^@react-aria\//,
+  /^@react-stately\//,
+  /^@react-types\//,
+  'emery',
+  '@urql/core'
+];
+
 // https://astro.build/config
 export default defineConfig({
   adapter: vercel(),
@@ -16,11 +26,14 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
     optimizeDeps: {
-      include: ['@keystatic/core', '@keystatic/astro'],
-      force: true
+      include: [],
+      noDiscovery: true
     },
     ssr: {
-      noExternal: ['@keystatic/astro', '@keystatic/core']
+      noExternal: keystaticNoExternal
+    },
+    define: {
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV ?? 'development')
     }
   },
 
