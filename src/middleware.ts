@@ -8,8 +8,16 @@ export const onRequest = defineMiddleware(async (context, next) => {
 		(prefix) => url.pathname === prefix || url.pathname.startsWith(`${prefix}/`)
 	);
 	if (needsAuth) {
-		const username = import.meta.env.KEYSTATIC_USERNAME ?? import.meta.env.ADMIN_USERNAME;
-		const password = import.meta.env.KEYSTATIC_PASSWORD ?? import.meta.env.ADMIN_PASSWORD;
+		const devUsername = 'bala-admin';
+		const devPassword = 'federalism@local';
+		const username =
+			import.meta.env.KEYSTATIC_USERNAME ??
+			import.meta.env.ADMIN_USERNAME ??
+			(import.meta.env.DEV ? devUsername : undefined);
+		const password =
+			import.meta.env.KEYSTATIC_PASSWORD ??
+			import.meta.env.ADMIN_PASSWORD ??
+			(import.meta.env.DEV ? devPassword : undefined);
 		if (!username || !password) {
 			return new Response('Keystatic credentials missing', { status: 500 });
 		}

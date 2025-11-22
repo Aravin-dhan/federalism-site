@@ -26,6 +26,12 @@ KEYSTATIC_GITHUB_BRANCH=main
 - `KEYSTATIC_USERNAME` / `KEYSTATIC_PASSWORD` secure `/keystatic` and `/api/keystatic` using Basic Auth via `src/middleware.ts`.
 - `KEYSTATIC_GITHUB_*` allow Keystatic to commit content edits back into this repo from the browser UI.
 
+### Keystatic Credentials & Security
+
+- When `KEYSTATIC_USERNAME` / `KEYSTATIC_PASSWORD` are not present locally, the middleware falls back to the development credentials `bala-admin` / `federalism@local`. This is only for offline work.
+- **Production**: set both variables in the Vercel project settings (Environment Variables tab) along with the GitHub token/branch/repo. Never commit real credentials to the repo.
+- To rotate credentials, update Vercel, then refresh the `/keystatic` page; the Basic Auth prompt will ask for the new values.
+
 ## Content Utilities
 
 Two helper scripts make it easy to move between DOCX/Google Docs and the MDX collections:

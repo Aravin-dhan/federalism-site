@@ -1,66 +1,68 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
-const contactPoints = [
-	{
-		label: 'Email',
-		value: 'balamurugan@federalism.in',
-		href: 'mailto:balamurugan@federalism.in'
-	},
-	{
-		label: 'Signal / WhatsApp',
-		value: '+91 90000 00000',
-		href: 'tel:+919000000000'
-	},
-	{
-		label: 'Office',
-		value: 'Room 214, Kalaignar Arivalayam, Chennai 600018',
-		href: 'https://maps.app.goo.gl/'
-	}
-];
-
-const speaking = [
-	{
-		title: 'Interviews & Media',
-		description: 'Write to media@federalism.in with format, audience size, and preferred dates.'
-	},
-	{
-		title: 'Movement Work',
-		description: 'Grassroots organizations can request briefings via signal using the number above.'
-	},
-	{
-		title: 'Research Citations',
-		description: 'Pull quotes and charts from the site are CC-BY; please attribute “Balamurugan K, Federalism Under Siege”.'
-	}
-];
+const email = 'contact@irsbala.in';
 ---
 
-<Layout title="Balamurugan K | Contact" description="How to reach Balamurugan and the Federalism Under Siege team.">
+<Layout title="Balamurugan K | Contact" description="Send a note to the Federalism Under Siege team.">
 	<section class="space-y-4">
-		<p class="text-sm uppercase tracking-[0.3em] text-slate/70">Always reachable</p>
+		<p class="text-sm uppercase tracking-[0.3em] text-slate/70">Write to me</p>
 		<h1 class="font-display text-4xl text-slate">Contact</h1>
 		<p class="text-base text-slate/80">
-			This notebook is public because every reader might become a collaborator. Use the coordinates below to reach me or the small team that helps with scheduling.
+			Every message lands directly in my inbox. Use the form below or email <a class="text-accent-red underline" href={`mailto:${email}`}>{email}</a>.
 		</p>
 	</section>
 
-	<section class="mt-10 grid gap-6 md:grid-cols-3" aria-label="Contact methods">
-		{contactPoints.map((point) => (
-			<article class="border border-slate/20 bg-white p-6">
-				<p class="text-sm uppercase tracking-[0.3em] text-slate/60">{point.label}</p>
-				<a class="mt-2 block font-display text-2xl text-slate hover:text-accent-red" href={point.href}>
-					{point.value}
-				</a>
-			</article>
-		))}
-	</section>
-
-	<section class="mt-16 grid gap-6 md:grid-cols-3" aria-label="Requests">
-		{speaking.map((item) => (
-			<div class="border border-slate/20 bg-paper p-6">
-				<h2 class="font-display text-xl text-slate">{item.title}</h2>
-				<p class="mt-3 text-base text-slate/80">{item.description}</p>
+	<section class="mt-10 grid gap-6 lg:grid-cols-[2fr_1fr]">
+		<form class="space-y-5 border border-slate/20 bg-white p-6" action={`mailto:${email}`} method="post" enctype="text/plain">
+			<div>
+				<label class="text-xs uppercase tracking-[0.3em] text-slate/60" for="name">Full Name</label>
+				<input
+					id="name"
+					name="name"
+					type="text"
+					required
+					class="mt-2 w-full border border-slate/30 px-4 py-3 text-base text-slate focus:border-accent-red focus:outline-none"
+					placeholder="Your name"
+				/>
 			</div>
-		))}
+			<div>
+				<label class="text-xs uppercase tracking-[0.3em] text-slate/60" for="email">Email</label>
+				<input
+					id="email"
+					name="email"
+					type="email"
+					required
+					class="mt-2 w-full border border-slate/30 px-4 py-3 text-base text-slate focus:border-accent-red focus:outline-none"
+					placeholder="you@example.com"
+				/>
+			</div>
+			<div>
+				<label class="text-xs uppercase tracking-[0.3em] text-slate/60" for="message">Message</label>
+				<textarea
+					id="message"
+					name="message"
+					required
+					rows="6"
+					class="mt-2 w-full border border-slate/30 px-4 py-3 text-base text-slate focus:border-accent-red focus:outline-none"
+					placeholder="Share context, dates, or requests"
+				></textarea>
+			</div>
+			<button type="submit" class="w-full border border-transparent bg-accent-red px-6 py-3 text-sm font-semibold uppercase tracking-[0.3em] text-white">
+				Send
+			</button>
+			<p class="text-xs text-slate/60">Submitting opens your mail client and sends the details to {email}.</p>
+		</form>
+
+		<aside class="space-y-5 border border-slate/20 bg-paper p-6">
+			<div>
+				<p class="text-xs uppercase tracking-[0.3em] text-slate/60">Phone</p>
+				<p class="mt-2 text-base text-slate/70">Coming soon</p>
+			</div>
+			<div>
+				<p class="text-xs uppercase tracking-[0.3em] text-slate/60">Office</p>
+				<p class="mt-2 text-base text-slate/70">Will be published when the public desk reopens.</p>
+			</div>
+		</aside>
 	</section>
 </Layout>
