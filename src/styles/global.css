@@ -1,0 +1,100 @@
+@import "tailwindcss";
+
+:root {
+	--color-cream: #f7f5f0;
+	--color-slate: #2c2c2c;
+	--color-brand-brick: #b93632;
+	--color-slate-black: #111111;
+	--color-gold: #c5a059;
+	--color-contrast-bg: #000000;
+	--color-contrast-text: #ffffff;
+	--font-display: 'Playfair Display', 'Noto Serif Tamil', serif;
+	--font-body: 'Inter', 'Noto Serif Tamil', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+	--font-tamil: 'Noto Serif Tamil', serif;
+}
+
+:root[data-contrast='high'] {
+	background-color: var(--color-contrast-bg);
+	--color-cream: #000000;
+	--color-slate: #ffffff;
+	--color-brand-brick: #ffb703;
+	--color-slate-black: #000000;
+}
+
+html {
+	font-size: 16px;
+}
+
+body {
+	min-height: 100vh;
+	font-family: var(--font-body);
+	background-color: var(--color-cream);
+	color: var(--color-slate);
+	line-height: 1.65;
+	text-rendering: optimizeLegibility;
+	font-size: 1.125rem;
+}
+
+:lang(ta) {
+	font-family: var(--font-tamil);
+}
+
+@layer utilities {
+	.font-display {
+		font-family: var(--font-display);
+	}
+	.font-body {
+		font-family: var(--font-body);
+	}
+	.text-brand-brick {
+		color: var(--color-brand-brick);
+	}
+	.text-brand-cream {
+		color: var(--color-cream);
+	}
+	.bg-brand-brick {
+		background-color: var(--color-brand-brick);
+	}
+	.bg-cream {
+		background-color: var(--color-cream);
+	}
+	.bg-slate-black {
+		background-color: var(--color-slate-black);
+	}
+	.text-slate {
+		color: var(--color-slate);
+	}
+	.focus-visible\:outline-brand-brick:focus-visible {
+		outline: 2px solid var(--color-brand-brick);
+		outline-offset: 4px;
+	}
+	.border-accent-red {
+		border-color: var(--color-brand-brick);
+	}
+}
+
+.skip-link {
+	position: absolute;
+	left: -999px;
+	top: auto;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+}
+
+.skip-link:focus-visible {
+	left: 1rem;
+	top: 1rem;
+	width: auto;
+	height: auto;
+	padding: 0.5rem 1rem;
+	background-color: var(--color-brand-brick);
+	color: var(--color-contrast-text);
+	z-index: 50;
+}
+
+.ticker-track {
+	display: flex;
+	gap: 4rem;
+	min-width: 200%;
+}

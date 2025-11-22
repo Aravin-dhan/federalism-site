@@ -1,0 +1,61 @@
+---
+import { Image } from 'astro:assets';
+import heroImage from '../assets/hero-bw.svg';
+
+export interface Props {
+	title?: string;
+	subtitle?: string;
+	excerpt?: string;
+	ctaLabel?: string;
+	ctaHref?: string;
+	ticker?: string;
+}
+
+const {
+	title = 'The Union is strong only when the States are free.',
+	subtitle = 'A research-grade blog for Tamil federal futures.',
+	excerpt = 'Data, archives, and political imagination from the frontlines of cooperative federalism.',
+	ctaLabel = 'Read the Manifesto',
+	ctaHref = '/articles',
+	ticker = 'The 29-Paise Rupee: Anatomy of a Fiscal Heist (Released Nov 22)'
+} = Astro.props;
+---
+
+<section class="border-t-4 border-accent-red bg-paper" aria-labelledby="hero-heading">
+	<div class="mx-auto grid max-w-6xl grid-cols-1 items-stretch gap-8 px-4 py-12 md:grid-cols-2">
+		<div class="flex flex-col justify-center">
+			<p class="text-sm uppercase tracking-[0.2em] text-highlight-gold">Federal Futures</p>
+			<h1 id="hero-heading" class="mt-4 font-display text-4xl text-slate md:text-5xl">
+				{title}
+			</h1>
+			<p class="mt-6 text-lg text-slate/80">{subtitle}</p>
+			<p class="mt-4 text-base text-slate/70">{excerpt}</p>
+			<div class="mt-8 flex flex-col gap-4 text-base md:flex-row">
+				<a
+					class="inline-flex items-center justify-center border border-transparent bg-accent-red px-6 py-3 font-semibold uppercase tracking-widest text-white transition hover:opacity-90"
+					href={ctaHref}
+				>
+					{ctaLabel}
+				</a>
+				<a
+					class="inline-flex items-center justify-center border border-slate px-6 py-3 font-semibold uppercase tracking-widest text-slate transition hover:border-accent-red hover:text-accent-red"
+					href="/resources"
+				>
+					Download Dossiers
+				</a>
+			</div>
+		</div>
+		<div class="relative min-h-[320px] overflow-hidden rounded-lg border border-slate/20">
+			<Image src={heroImage} alt="High contrast portrayal of Tamil federal aspirations." loading="lazy" class="h-full w-full object-cover" />
+		</div>
+	</div>
+	<div class="bg-slate text-white" aria-live="polite">
+		<div class="mx-auto flex max-w-6xl items-center gap-4 overflow-hidden px-4 py-3">
+			<span class="font-semibold uppercase tracking-widest text-highlight-gold">Latest Update</span>
+			<div class="ticker-track animate-ticker whitespace-nowrap text-sm">
+				<span>{ticker}</span>
+				<span aria-hidden="true">{ticker}</span>
+			</div>
+		</div>
+	</div>
+</section>

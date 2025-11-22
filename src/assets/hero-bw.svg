@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-labelledby="heroTitle heroDesc">
+  <title id="heroTitle">Dravidian Modernism Hero Placeholder</title>
+  <desc id="heroDesc">High contrast monochrome collage representing federal futures.</desc>
+  <defs>
+    <linearGradient id="bw" x1="0%" x2="100%">
+      <stop offset="0%" stop-color="#111" />
+      <stop offset="100%" stop-color="#555" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bw)" />
+  <circle cx="350" cy="350" r="220" fill="#f7f5f0" opacity="0.08" />
+  <rect x="700" y="150" width="260" height="420" fill="#f7f5f0" opacity="0.1" />
+  <path d="M150 700 L600 500 L1100 700" stroke="#f7f5f0" stroke-width="6" fill="none" opacity="0.2" />
+  <text x="50%" y="50%" text-anchor="middle" fill="#f7f5f0" opacity="0.15" font-size="96" font-family="'Playfair Display', serif">Justice</text>
+</svg>

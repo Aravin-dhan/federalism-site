@@ -1,0 +1,46 @@
+---
+import LanguageToggle from './LanguageToggle.astro';
+
+export interface Props {
+	lang?: 'en' | 'ta';
+}
+
+const { lang = 'en' } = Astro.props;
+const navLinks = [
+	{ label: 'Articles', href: '/articles' },
+	{ label: 'Resources', href: '/resources' },
+	{ label: 'Videos', href: '/videos' },
+	{ label: lang === 'ta' ? 'தமிழ் பற்றி' : 'About', href: '/about' }
+];
+---
+
+<header class="border-t-4 border-accent-red bg-white/95 shadow-sm backdrop-blur">
+	<div class="mx-auto flex w-full max-w-6xl flex-col gap-4 px-4 py-4 md:flex-row md:items-center md:justify-between" aria-label="Primary">
+		<div class="flex items-center gap-3">
+			<svg class="h-12 w-12 text-accent-red" viewBox="0 0 64 64" role="img" aria-labelledby="brandTitle">
+				<title id="brandTitle">Federal Pillar Monogram</title>
+				<path fill="currentColor" d="M32 4C22 4 14 12 14 22v38h12V46h12v14h12V22C50 12 42 4 32 4Zm0 12c3.3 0 6 2.7 6 6v10H26V22c0-3.3 2.7-6 6-6Z" />
+			</svg>
+			<div>
+				<p class="font-display text-2xl text-slate">Federalism Under Siege</p>
+				<p class="text-sm uppercase tracking-widest text-slate/70">Ideas | Tamil Nadu | Justice</p>
+			</div>
+		</div>
+		<nav class="flex flex-wrap items-center gap-4 text-sm font-semibold uppercase tracking-wide text-slate">
+			{navLinks.map((link) => (
+				<a class="hover:text-accent-red focus-visible:outline-brand-brick" href={link.href}>{link.label}</a>
+			))}
+		</nav>
+		<div class="flex items-center gap-3">
+			<button
+				id="contrast-toggle"
+				type="button"
+				class="rounded-full border border-slate/30 px-4 py-2 text-xs font-semibold uppercase tracking-widest text-slate transition hover:border-accent-red hover:text-accent-red"
+				aria-pressed="false"
+			>
+				High Contrast
+			</button>
+			<LanguageToggle currentLang={lang} />
+		</div>
+	</div>
+</header>

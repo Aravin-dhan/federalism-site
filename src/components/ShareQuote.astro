@@ -1,0 +1,18 @@
+---
+export interface Props {
+	quote: string;
+	signature?: string;
+	lang?: 'en' | 'ta';
+}
+
+const { quote, signature = 'Federalism Under Siege', lang = 'en' } = Astro.props;
+---
+
+<figure class="flex aspect-square flex-col bg-accent-red text-paper" lang={lang}>
+	<blockquote class="flex-1 p-8 font-display text-2xl italic leading-tight">
+		{quote}
+	</blockquote>
+	<figcaption class="px-8 pb-6 text-right text-sm uppercase tracking-widest">
+		{signature}
+	</figcaption>
+</figure>

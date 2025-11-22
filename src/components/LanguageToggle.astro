@@ -1,0 +1,21 @@
+---
+export interface Props {
+	currentLang?: 'en' | 'ta';
+}
+
+const { currentLang = 'en' } = Astro.props;
+const nextLang = currentLang === 'en' ? 'ta' : 'en';
+const labels: Record<'en' | 'ta', string> = {
+	en: 'English',
+	ta: 'தமிழ்'
+};
+const destination = currentLang === 'en' ? '/ta' : '/en';
+---
+
+<a
+	class="inline-flex items-center gap-2 rounded-full border border-slate/40 px-4 py-2 text-xs font-semibold uppercase tracking-widest text-slate transition hover:border-accent-red hover:text-accent-red"
+	aria-label={`Switch site language to ${labels[nextLang]}`}
+	href={destination}
+>
+	<span class={nextLang === 'ta' ? 'font-tamil text-sm' : ''}>{labels[nextLang]}</span>
+</a>

@@ -1,0 +1,47 @@
+---
+import { Image, type ImageMetadata } from 'astro:assets';
+import fallback from '../assets/card-fallback.svg';
+
+export interface Props {
+	title: string;
+	summary: string;
+	date: string;
+	readTime: string;
+	href: string;
+	heroImage?: ImageMetadata | null;
+	lang?: 'en' | 'ta';
+}
+
+const { title, summary, date, readTime, href, heroImage, lang = 'en' } = Astro.props;
+---
+
+<article class="flex flex-col border border-slate/20 bg-white" lang={lang}>
+	<a href={href} class="focus-visible:outline-brand-brick">
+		<Image
+			src={heroImage ?? fallback}
+			alt={heroImage ? `${title} hero image` : 'Article placeholder'}
+			loading="lazy"
+			class="h-48 w-full object-cover"
+		/>
+	</a>
+	<div class="flex flex-1 flex-col p-5">
+		<p class="flex items-center gap-3 text-xs uppercase tracking-[0.3em] text-slate/70">
+			<time datetime={date}>{new Date(date).toLocaleDateString(lang === 'ta' ? 'ta-IN' : 'en-US', { dateStyle: 'medium' })}</time>
+			<span class="h-px w-8 bg-accent-red" aria-hidden="true"></span>
+			<span>{readTime}</span>
+		</p>
+		<h2 class={`mt-3 font-display text-2xl text-slate ${lang === 'ta' ? 'font-tamil' : ''}`}>
+			<a href={href} class="hover:text-accent-red focus-visible:outline-brand-brick">{title}</a>
+		</h2>
+		<p class="mt-4 text-base text-slate/80 font-sans">{summary}</p>
+		<div class="mt-auto pt-6">
+			<a
+				href={href}
+				class="inline-flex items-center text-sm font-semibold uppercase tracking-widest text-accent-red"
+				aria-label={`Read article ${title}`}
+			>
+				Read Piece →
+			</a>
+		</div>
+	</div>
+</article>

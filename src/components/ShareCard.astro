@@ -1,0 +1,19 @@
+---
+export interface Props {
+	text: string;
+	author: string;
+	brand?: string;
+}
+
+const { text, author, brand = 'The Federal Papers' } = Astro.props;
+---
+
+<section class="flex aspect-square flex-col bg-accent-red text-paper" role="note" aria-label="Shareable quote">
+	<blockquote class="flex-1 p-10 font-display text-3xl leading-snug">
+		{text}
+	</blockquote>
+	<footer class="flex items-center justify-between border-t border-white/30 px-10 py-6 text-sm uppercase tracking-[0.3em]">
+		<span class="font-display text-xl italic">{author}</span>
+		<span>{brand}</span>
+	</footer>
+</section>

@@ -1,0 +1,22 @@
+---
+export interface Props {
+	title: string;
+	date: string;
+	category: string;
+	readTime: string;
+}
+
+const { title, date, category, readTime } = Astro.props;
+const formatted = new Date(date).toLocaleDateString('en-IN', { dateStyle: 'long' });
+---
+
+<header class="border-b border-slate/20 pb-8">
+	<p class="flex flex-wrap items-center gap-4 text-xs uppercase tracking-[0.3em] text-slate/70">
+		<span>{category}</span>
+		<span class="hidden h-px w-8 bg-accent-red md:block" aria-hidden="true"></span>
+		<time datetime={date}>{formatted}</time>
+		<span class="hidden h-px w-8 bg-accent-red md:block" aria-hidden="true"></span>
+		<span>{readTime}</span>
+	</p>
+	<h1 class="mt-6 font-display text-4xl text-slate md:text-5xl">{title}</h1>
+</header>

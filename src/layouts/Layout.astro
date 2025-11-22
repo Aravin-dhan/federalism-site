@@ -1,0 +1,75 @@
+---
+import '../styles/global.css';
+import Navbar from '../components/Navbar.astro';
+
+type LayoutProps = {
+	title?: string;
+	description?: string;
+	lang?: 'en' | 'ta';
+};
+
+const {
+	title = 'Federalism Under Siege',
+	description = 'A Dravidian modernist publication platform.',
+	lang = 'en'
+} = Astro.props as LayoutProps;
+---
+
+<!doctype html>
+<html lang={lang} data-contrast="normal" class="min-h-full bg-cream antialiased">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@100..900&family=Noto+Serif+Tamil:wght@100..900&display=swap"
+			rel="stylesheet"
+		/>
+	</head>
+	<body class="flex min-h-screen flex-col bg-cream text-slate font-body">
+		<a
+			class="focus-visible:outline-brand-brick sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:rounded focus:bg-brand-brick focus:px-4 focus:py-2 focus:text-white"
+			href="#main"
+		>
+			Skip to main content
+		</a>
+		<Navbar lang={lang} />
+		<main id="main" class="flex-1 bg-cream px-4 py-10">
+			<div class="mx-auto w-full max-w-6xl">
+				<slot />
+			</div>
+		</main>
+		<footer class="border-t border-slate/15 bg-slate-black px-4 py-8 text-sm text-white">
+			<div class="mx-auto flex w-full max-w-6xl flex-col gap-2 md:flex-row md:items-center md:justify-between">
+				<p class="font-display text-lg text-brand-cream" lang="ta">
+					நாடு, மக்கள், சமத்துவம்
+				</p>
+				<p class="text-brand-cream opacity-80">
+					© {new Date().getFullYear()} Federalism Under Siege. MIT Licensed. Crafted with Astro, Tailwind, and Keystatic.
+				</p>
+			</div>
+		</footer>
+		<script type="module">
+			const root = document.documentElement;
+			const toggle = document.querySelector('#contrast-toggle');
+			const storageKey = 'contrast-mode';
+			const applyMode = (mode) => {
+				root.dataset.contrast = mode;
+				localStorage.setItem(storageKey, mode);
+			};
+			const saved = localStorage.getItem(storageKey);
+			if (saved === 'high') {
+				applyMode('high');
+			}
+			toggle?.addEventListener('click', () => {
+				const next = root.dataset.contrast === 'high' ? 'normal' : 'high';
+				applyMode(next);
+			});
+		</script>
+	</body>
+</html>
