@@ -6,10 +6,18 @@ const interviews = await getCollection('videos');
 const sorted = interviews.sort((a, b) => b.data.publishedOn.getTime() - a.data.publishedOn.getTime());
 ---
 
-<Layout lang="ta" title="பாலமுருகன் | நேர்காணல்கள்">
+<Layout lang="ta" title="பாலமுருகன் K | நேர்காணல்கள்">
 	<section lang="ta" class="space-y-4">
 		<h1 class="font-display text-4xl text-slate">நேர்காணல்கள்</h1>
-		<p class="text-base text-slate/80">தமிழிலும் ஆங்கிலத்திலும் வெளிவந்த ஊடக உரையாடல்கள்.</p>
+		<p class="text-base text-slate/80">தமிழிலும் ஆங்கிலத்திலும் வெளியான தொலைக்காட்சி மற்றும் பாட்காஸ்ட் உரையாடல்கள்.</p>
+		<a
+			class="inline-flex items-center text-sm font-semibold uppercase tracking-[0.3em] text-accent-red"
+			href="https://www.youtube.com/@aramporulkalvi"
+			target="_blank"
+			rel="noopener noreferrer"
+		>
+			YouTube: @aramporulkalvi →
+		</a>
 	</section>
 	<section class="mt-8 space-y-5">
 		{sorted.map((entry) => (

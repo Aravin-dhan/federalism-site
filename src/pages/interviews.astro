@@ -11,6 +11,14 @@ const sorted = interviews.sort((a, b) => b.data.publishedOn.getTime() - a.data.p
 		<p class="text-sm uppercase tracking-[0.3em] text-slate/70">Federal Renewal</p>
 		<h1 class="font-display text-4xl text-slate">Interviews</h1>
 		<p class="text-base text-slate/80">Recordings that amplify the ideas inside <em>Federalism Under Siege</em>. Videos are hosted externally for accessibility.</p>
+		<a
+			class="inline-flex items-center text-sm font-semibold uppercase tracking-[0.3em] text-accent-red"
+			href="https://www.youtube.com/@aramporulkalvi"
+			target="_blank"
+			rel="noopener noreferrer"
+		>
+			Watch the full channel @aramporulkalvi →
+		</a>
 	</section>
 	<section class="mt-10 space-y-6">
 		{sorted.map((entry) => (
