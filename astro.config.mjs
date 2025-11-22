@@ -34,6 +34,12 @@ export default defineConfig({
     },
     define: {
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV ?? 'development')
+    },
+    resolve: {
+      alias: {
+        'lodash/debounce': 'lodash-es/debounce',
+        'lodash/debounce.js': 'lodash-es/debounce'
+      }
     }
   },
 
