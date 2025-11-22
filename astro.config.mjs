@@ -14,7 +14,14 @@ export default defineConfig({
   adapter: vercel(),
   output: 'server',
   vite: {
-    plugins: [tailwindcss()]
+    plugins: [tailwindcss()],
+    optimizeDeps: {
+      include: ['@keystatic/core', '@keystatic/astro'],
+      force: true
+    },
+    ssr: {
+      noExternal: ['@keystatic/astro', '@keystatic/core']
+    }
   },
 
   integrations: [mdx(), keystatic(), react()]

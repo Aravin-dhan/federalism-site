@@ -9,8 +9,8 @@ type LayoutProps = {
 };
 
 const {
-	title = "Balamurugan | Federalism Under Siege",
-	description = "Personal research log and public diary of Balamurugan.",
+	title = "Balamurugan K | Federalism Under Siege",
+	description = "Personal research log and public diary of Balamurugan K.",
 	lang = "en"
 } = Astro.props as LayoutProps;
 
@@ -18,7 +18,7 @@ const currentPath = Astro.url?.pathname ?? "/";
 ---
 
 <!doctype html>
-<html lang={lang} data-contrast="normal" class="min-h-full bg-cream antialiased">
+<html lang={lang} class="min-h-full bg-cream antialiased">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -49,29 +49,12 @@ const currentPath = Astro.url?.pathname ?? "/";
 		<footer class="border-t border-slate/15 bg-slate-black px-4 py-8 text-sm text-white">
 			<div class="mx-auto flex w-full max-w-6xl flex-col gap-2 md:flex-row md:items-center md:justify-between">
 				<p class="font-display text-lg text-brand-cream" lang="ta">
-					நாடு, மக்கள், சமத்துவம்
+					நாடு · மக்கள் · சமத்துவம்
 				</p>
 				<p class="text-brand-cream opacity-80">
-					© {new Date().getFullYear()} Balamurugan · Federalism Under Siege. MIT Licensed.
+					© {new Date().getFullYear()} Balamurugan K · Federalism Under Siege. MIT Licensed.
 				</p>
 			</div>
 		</footer>
-		<script type="module">
-			const root = document.documentElement;
-			const toggle = document.querySelector('#contrast-toggle');
-			const storageKey = 'contrast-mode';
-			const applyMode = (mode) => {
-				root.dataset.contrast = mode;
-				localStorage.setItem(storageKey, mode);
-			};
-			const saved = localStorage.getItem(storageKey);
-			if (saved === 'high') {
-				applyMode('high');
-			}
-			toggle?.addEventListener('click', () => {
-				const next = root.dataset.contrast === 'high' ? 'normal' : 'high';
-				applyMode(next);
-			});
-		</script>
 	</body>
 </html>

@@ -6,19 +6,9 @@
 	--color-brand-brick: #b93632;
 	--color-slate-black: #111111;
 	--color-gold: #c5a059;
-	--color-contrast-bg: #000000;
-	--color-contrast-text: #ffffff;
 	--font-display: 'Playfair Display', 'Noto Serif Tamil', serif;
 	--font-body: 'Inter', 'Noto Serif Tamil', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
 	--font-tamil: 'Noto Serif Tamil', serif;
-}
-
-:root[data-contrast='high'] {
-	background-color: var(--color-contrast-bg);
-	--color-cream: #000000;
-	--color-slate: #ffffff;
-	--color-brand-brick: #ffb703;
-	--color-slate-black: #000000;
 }
 
 html {
@@ -89,7 +79,7 @@ body {
 	height: auto;
 	padding: 0.5rem 1rem;
 	background-color: var(--color-brand-brick);
-	color: var(--color-contrast-text);
+	color: #ffffff;
 	z-index: 50;
 }
 
