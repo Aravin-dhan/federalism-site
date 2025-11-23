@@ -21,6 +21,16 @@ const keystaticNoExternal = [
 
 const directionShim = new URL('./src/shims/direction-default.js', import.meta.url).pathname;
 const isHotkeyShim = new URL('./src/shims/is-hotkey.js', import.meta.url).pathname;
+const lodashSubpathAlias = { find: /^lodash\/(.*)$/, replacement: 'lodash-es/$1' };
+
+const resolveAliases = [
+  lodashSubpathAlias,
+  { find: 'direction', replacement: directionShim },
+  { find: 'direction/index.js', replacement: directionShim },
+  { find: 'is-hotkey', replacement: isHotkeyShim },
+  { find: 'is-hotkey/lib/index.js', replacement: isHotkeyShim },
+  { find: 'slate-react/node_modules/is-hotkey/lib/index.js', replacement: isHotkeyShim }
+];
 
 // https://astro.build/config
 export default defineConfig({
@@ -39,15 +49,7 @@ export default defineConfig({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV ?? 'development')
     },
     resolve: {
-      alias: {
-        'lodash/debounce': 'lodash-es/debounce',
-        'lodash/debounce.js': 'lodash-es/debounce',
-        direction: directionShim,
-        'direction/index.js': directionShim,
-        'is-hotkey': isHotkeyShim,
-        'is-hotkey/lib/index.js': isHotkeyShim,
-        'slate-react/node_modules/is-hotkey/lib/index.js': isHotkeyShim
-      }
+      alias: resolveAliases
     }
   },
 
