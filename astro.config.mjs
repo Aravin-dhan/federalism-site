@@ -21,6 +21,7 @@ const keystaticNoExternal = [
 
 const directionShim = new URL('./src/shims/direction-default.js', import.meta.url).pathname;
 const isHotkeyShim = new URL('./src/shims/is-hotkey.js', import.meta.url).pathname;
+const useSyncExternalStoreShim = new URL('./src/shims/use-sync-external-store.js', import.meta.url).pathname;
 const lodashSubpathAlias = { find: /^lodash\/(.*)$/, replacement: 'lodash-es/$1' };
 
 const resolveAliases = [
@@ -29,7 +30,10 @@ const resolveAliases = [
   { find: 'direction/index.js', replacement: directionShim },
   { find: 'is-hotkey', replacement: isHotkeyShim },
   { find: 'is-hotkey/lib/index.js', replacement: isHotkeyShim },
-  { find: 'slate-react/node_modules/is-hotkey/lib/index.js', replacement: isHotkeyShim }
+  { find: 'slate-react/node_modules/is-hotkey/lib/index.js', replacement: isHotkeyShim },
+  { find: 'use-sync-external-store/shim', replacement: useSyncExternalStoreShim },
+  { find: 'use-sync-external-store/shim/index', replacement: useSyncExternalStoreShim },
+  { find: 'use-sync-external-store/shim/index.js', replacement: useSyncExternalStoreShim }
 ];
 
 // https://astro.build/config
