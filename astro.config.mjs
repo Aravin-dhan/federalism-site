@@ -20,6 +20,7 @@ const keystaticNoExternal = [
 ];
 
 const directionShim = new URL('./src/shims/direction-default.js', import.meta.url).pathname;
+const isHotkeyShim = new URL('./src/shims/is-hotkey.js', import.meta.url).pathname;
 
 // https://astro.build/config
 export default defineConfig({
@@ -42,7 +43,10 @@ export default defineConfig({
         'lodash/debounce': 'lodash-es/debounce',
         'lodash/debounce.js': 'lodash-es/debounce',
         direction: directionShim,
-        'direction/index.js': directionShim
+        'direction/index.js': directionShim,
+        'is-hotkey': isHotkeyShim,
+        'is-hotkey/lib/index.js': isHotkeyShim,
+        'slate-react/node_modules/is-hotkey/lib/index.js': isHotkeyShim
       }
     }
   },
