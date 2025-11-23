@@ -31,7 +31,8 @@ const shimMap = new Map([
   ['slate-react/node_modules/is-hotkey/lib/index.js', isHotkeyShim],
   ['use-sync-external-store/shim', useSyncExternalStoreShim],
   ['use-sync-external-store/shim/index', useSyncExternalStoreShim],
-  ['use-sync-external-store/shim/index.js', useSyncExternalStoreShim]
+  ['use-sync-external-store/shim/index.js', useSyncExternalStoreShim],
+  ['@react-stately/toast/dist/useToastState.mjs', fileURLToPath(new URL('./src/shims/react-stately-useToastState.mjs', import.meta.url))]
 ]);
 
 const resolveAliases = [
