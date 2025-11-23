@@ -1,4 +1,5 @@
 // @ts-check
+import { fileURLToPath } from 'node:url';
 import { defineConfig } from 'astro/config';
 
 import tailwindcss from '@tailwindcss/vite';
@@ -19,9 +20,9 @@ const keystaticNoExternal = [
   '@urql/core'
 ];
 
-const directionShim = new URL('./src/shims/direction-default.js', import.meta.url).pathname;
-const isHotkeyShim = new URL('./src/shims/is-hotkey.js', import.meta.url).pathname;
-const useSyncExternalStoreShim = new URL('./src/shims/use-sync-external-store.js', import.meta.url).pathname;
+const directionShim = fileURLToPath(new URL('./src/shims/direction-default.js', import.meta.url));
+const isHotkeyShim = fileURLToPath(new URL('./src/shims/is-hotkey.js', import.meta.url));
+const useSyncExternalStoreShim = fileURLToPath(new URL('./src/shims/use-sync-external-store.js', import.meta.url));
 const lodashSubpathAlias = { find: /^lodash\/(.*)$/, replacement: 'lodash-es/$1' };
 
 const resolveAliases = [
