@@ -8,11 +8,13 @@ export interface Props {
 
 const { lang = "en", path = "/" } = Astro.props;
 const prefix = lang === "ta" ? "/ta" : "";
+const homeHref = prefix || "/";
 const navLinks =
 	lang === "ta"
 		? [
 				{ label: "எழுத்துகள்", href: `${prefix}/writings` },
 				{ label: "நேர்காணல்கள்", href: `${prefix}/interviews` },
+				{ label: "நினைவுகள்", href: `${prefix}/bookmarks` },
 				{ label: "வளங்கள்", href: `${prefix}/resources` },
 				{ label: "தொடர்பு", href: `${prefix}/contact` },
 				{ label: "பற்றி", href: `${prefix}/about` }
@@ -20,6 +22,7 @@ const navLinks =
 		: [
 				{ label: "Writings", href: `${prefix}/writings` },
 				{ label: "Interviews", href: `${prefix}/interviews` },
+				{ label: "Bookmarks", href: `${prefix}/bookmarks` },
 				{ label: "Resources", href: `${prefix}/resources` },
 				{ label: "Contact", href: `${prefix}/contact` },
 				{ label: "About", href: `${prefix}/about` }
@@ -28,16 +31,16 @@ const navLinks =
 
 <header class="border-t-4 border-accent-red bg-white/95 shadow-sm backdrop-blur">
 	<div class="mx-auto flex w-full max-w-6xl flex-col gap-4 px-4 py-4 md:flex-row md:items-center md:justify-between" aria-label="Primary">
-		<div class="flex items-center gap-3">
+		<a class="flex items-center gap-3 text-current no-underline" href={homeHref} aria-label="Go to homepage">
 			<svg class="h-12 w-12 text-accent-red" viewBox="0 0 64 64" role="img" aria-labelledby="brandTitle">
 				<title id="brandTitle">Federal Pillar Monogram</title>
 				<path fill="currentColor" d="M32 4C22 4 14 12 14 22v38h12V46h12v14h12V22C50 12 42 4 32 4Zm0 12c3.3 0 6 2.7 6 6v10H26V22c0-3.3 2.7-6 6-6Z" />
 			</svg>
 			<div>
 				<p class="font-display text-2xl text-slate">Balamurugan K</p>
-				<p class="text-sm uppercase tracking-widest text-slate/70">Federalism Under Siege · Personal Notebook</p>
+				<p class="text-sm uppercase tracking-widest text-slate/70">Public Servant</p>
 			</div>
-		</div>
+		</a>
 		<nav class="flex flex-wrap items-center gap-4 text-sm font-semibold uppercase tracking-wide text-slate">
 			{navLinks.map((link) => (
 				<a class="hover:text-accent-red focus-visible:outline-brand-brick" href={link.href}>{link.label}</a>

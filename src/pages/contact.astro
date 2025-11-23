@@ -2,6 +2,10 @@
 import Layout from '../layouts/Layout.astro';
 
 const email = 'contact@irsbala.in';
+const forms = {
+	collaboration: 'https://forms.gle/collaboration-form',
+	press: 'https://forms.gle/press-briefing-request'
+};
 ---
 
 <Layout title="Balamurugan K | Contact" description="Send a note to the Federalism Under Siege team.">
@@ -48,13 +52,16 @@ const email = 'contact@irsbala.in';
 					placeholder="Share context, dates, or requests"
 				></textarea>
 			</div>
-			<button type="submit" class="w-full border border-transparent bg-accent-red px-6 py-3 text-sm font-semibold uppercase tracking-[0.3em] text-white">
-				Send
+			<button
+				type="submit"
+				class="w-full border border-transparent bg-accent-red px-6 py-3 text-sm font-semibold uppercase tracking-[0.3em] text-white"
+			>
+				Send Message
 			</button>
 			<p class="text-xs text-slate/60">Submitting opens your mail client and sends the details to {email}.</p>
 		</form>
 
-		<aside class="space-y-5 border border-slate/20 bg-paper p-6">
+		<aside class="space-y-6 border border-slate/20 bg-paper p-6">
 			<div>
 				<p class="text-xs uppercase tracking-[0.3em] text-slate/60">Phone</p>
 				<p class="mt-2 text-base text-slate/70">Coming soon</p>
@@ -62,6 +69,31 @@ const email = 'contact@irsbala.in';
 			<div>
 				<p class="text-xs uppercase tracking-[0.3em] text-slate/60">Office</p>
 				<p class="mt-2 text-base text-slate/70">Will be published when the public desk reopens.</p>
+			</div>
+			<div class="space-y-3">
+				<p class="text-xs uppercase tracking-[0.3em] text-slate/60">Google Forms</p>
+				<a
+					class="flex items-center justify-between rounded border border-slate/30 px-4 py-3 text-sm font-semibold text-slate hover:border-accent-red hover:text-accent-red focus-visible:outline-brand-brick"
+					href={forms.collaboration}
+					target="_blank"
+					rel="noreferrer noopener"
+				>
+					Collaboration Queries
+					<svg class="h-4 w-4" viewBox="0 0 24 24" aria-hidden="true">
+						<path fill="currentColor" d="M14 3h7v7h-2V6.414l-9.293 9.293-1.414-1.414L17.586 5H14V3ZM5 5h5V3H3v7h2V5Zm12 12v5H7v-5H5v7h14v-7h-2Z" />
+					</svg>
+				</a>
+				<a
+					class="flex items-center justify-between rounded border border-slate/30 px-4 py-3 text-sm font-semibold text-slate hover:border-accent-red hover:text-accent-red focus-visible:outline-brand-brick"
+					href={forms.press}
+					target="_blank"
+					rel="noreferrer noopener"
+				>
+					Press Briefing Requests
+					<svg class="h-4 w-4" viewBox="0 0 24 24" aria-hidden="true">
+						<path fill="currentColor" d="M14 3h7v7h-2V6.414l-9.293 9.293-1.414-1.414L17.586 5H14V3ZM5 5h5V3H3v7h2V5Zm12 12v5H7v-5H5v7h14v-7h-2Z" />
+					</svg>
+				</a>
 			</div>
 		</aside>
 	</section>

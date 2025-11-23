@@ -1,0 +1,88 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { bookmarkCategories, formatLabels, type BookmarkItem } from "../data/bookmarks";
+
+const lang = "en";
+const t = (value: { en: string; ta: string }) => value[lang];
+const typeLabel = (format: BookmarkItem["format"]) => formatLabels[format][lang];
+const pageTitle = "Bookmarks & Interesting Reads";
+const pageDescription =
+	"Websites, books, audio, and clips that are shaping my current thinking on cooperative federalism.";
+---
+
+<Layout title={`${pageTitle} | Balamurugan K`} description={pageDescription} lang={lang}>
+	<article class="space-y-12">
+		<header class="rounded-2xl border border-slate/10 bg-white/90 p-8 shadow-sm backdrop-blur">
+			<p class="text-sm uppercase tracking-[0.2em] text-accent-red">Bookmark Cabinet</p>
+			<h1 class="mt-4 font-display text-4xl text-slate">{pageTitle}</h1>
+			<p class="mt-4 max-w-3xl text-lg text-slate/80">
+				I keep this list so the team can quickly find what I am reading, referencing, or listening to right
+				now. Everything here is accessible online and organised for easy sharing with coordinators.
+			</p>
+			<p class="mt-3 text-sm text-slate/70">
+				Last curated: {new Date().toLocaleDateString("en-IN", { month: "long", day: "numeric", year: "numeric" })}
+			</p>
+		</header>
+
+		{bookmarkCategories.map((category) => (
+			<section class="space-y-6" aria-labelledby={`${category.id}-heading`}>
+				<header>
+					<p class="text-xs uppercase tracking-[0.3em] text-highlight-gold">Collection</p>
+					<h2 id={`${category.id}-heading`} class="font-display text-3xl text-slate">
+						{t(category.title)}
+					</h2>
+					<p class="mt-2 max-w-3xl text-base text-slate/80">{t(category.description)}</p>
+				</header>
+				<div class="grid gap-6 md:grid-cols-2">
+					{category.items.map((item) => (
+						<article class="flex h-full flex-col justify-between rounded-2xl border border-slate/10 bg-white p-6 shadow-sm transition hover:border-accent-red/40">
+							<div class="space-y-4">
+								<div class="flex flex-wrap items-center gap-2 text-xs font-semibold uppercase tracking-wide text-slate/70">
+									<span class="rounded-full border border-slate/30 px-3 py-1">{typeLabel(item.format)}</span>
+									<span class="h-1 w-1 rounded-full bg-accent-red" aria-hidden="true"></span>
+									<span>{t(item.status)}</span>
+									{item.duration && (
+										<>
+											<span class="h-1 w-1 rounded-full bg-accent-red" aria-hidden="true"></span>
+											<span>{item.duration}</span>
+										</>
+									)}
+								</div>
+								<h3 class="font-display text-2xl text-slate">
+									<a
+										href={item.url}
+										target="_blank"
+										rel="noreferrer noopener"
+										class="hover:text-accent-red focus-visible:outline-brand-brick"
+										aria-label={`Open ${t(item.title)} in a new tab`}
+									>
+										{t(item.title)}
+									</a>
+								</h3>
+								<p class="text-sm text-slate/70">{t(item.source)}</p>
+								<p class="text-base text-slate/80">{t(item.annotation)}</p>
+							</div>
+							<div class="mt-6">
+								<a
+									href={item.url}
+									target="_blank"
+									rel="noreferrer noopener"
+									class="inline-flex items-center gap-2 text-sm font-semibold text-accent-red focus-visible:outline-brand-brick"
+									aria-label={`Visit ${t(item.title)} (${typeLabel(item.format)})`}
+								>
+									<span>Open {typeLabel(item.format)}</span>
+									<svg class="h-4 w-4" viewBox="0 0 24 24" role="img" aria-hidden="true">
+										<path
+											fill="currentColor"
+											d="M5 12.75V19h6.25v2H3V12.75h2Zm14-9H11.75v2H18v6.25h2V3.75ZM19 3h-6v2h2.586l-8.293 8.293 1.414 1.414L17 6.414V9h2V3Z"
+										/>
+									</svg>
+								</a>
+							</div>
+						</article>
+					))}
+				</div>
+			</section>
+		))}
+	</article>
+</Layout>

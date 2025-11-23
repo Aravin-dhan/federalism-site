@@ -1,0 +1,90 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { bookmarkCategories, formatLabels, type BookmarkItem } from "../../data/bookmarks";
+
+const lang = "ta";
+const t = (value: { en: string; ta: string }) => value[lang];
+const typeLabel = (format: BookmarkItem["format"]) => formatLabels[format][lang];
+const pageTitle = "பாலாவின் விருப்பச் சேமிப்புகள்";
+const pageDescription =
+	"இப்போது படிக்கும் கட்டுரைகள், மேசையில் இருக்கும் புத்தகங்கள், கேட்கும் ஒலி மற்றும் இசை – எல்லாம் ஒரே இடத்தில்.";
+---
+
+<Layout title={`${pageTitle} | பாலமுருகன் K`} description={pageDescription} lang={lang}>
+	<article class="space-y-12 font-tamil">
+		<header class="rounded-2xl border border-slate/15 bg-white/95 p-8 shadow-sm backdrop-blur">
+			<p class="text-sm uppercase tracking-[0.4em] text-accent-red" lang="en">Bookmark Cabinet</p>
+			<h1 class="mt-4 font-display text-4xl text-slate">{pageTitle}</h1>
+			<p class="mt-4 max-w-3xl text-lg text-slate/80">
+				இங்கே உள்ள பக்கங்கள் என் சிந்தனையை அமைக்கும் வாசிப்புகள். ஒருங்கிணைப்பாளர்கள் மற்றும் தன்னார்வலர்கள் எளிதாக பகிர
+				வேண்டிய இணைப்புகள் பக்கம் வாரியாக ஒழுங்குபடுத்தப்பட்டுள்ளன.
+			</p>
+			<p class="mt-3 text-sm text-slate/70">
+				புதுப்பிக்கப்பட்ட தேதி: {new Date().toLocaleDateString("ta-IN", { month: "long", day: "numeric", year: "numeric" })}
+			</p>
+		</header>
+
+		{bookmarkCategories.map((category) => (
+			<section class="space-y-6" aria-labelledby={`${category.id}-heading`}>
+				<header>
+					<p class="text-xs uppercase tracking-[0.3em] text-highlight-gold" lang="en">
+						Collection
+					</p>
+					<h2 id={`${category.id}-heading`} class="font-display text-3xl text-slate">
+						{t(category.title)}
+					</h2>
+					<p class="mt-2 max-w-3xl text-base text-slate/80">{t(category.description)}</p>
+				</header>
+				<div class="grid gap-6 md:grid-cols-2">
+					{category.items.map((item) => (
+						<article class="flex h-full flex-col justify-between rounded-2xl border border-slate/10 bg-white p-6 shadow-sm transition hover:border-accent-red/40">
+							<div class="space-y-4">
+								<div class="flex flex-wrap items-center gap-2 text-xs font-semibold uppercase tracking-wide text-slate/70">
+									<span class="rounded-full border border-slate/30 px-3 py-1">{typeLabel(item.format)}</span>
+									<span class="h-1 w-1 rounded-full bg-accent-red" aria-hidden="true"></span>
+									<span>{t(item.status)}</span>
+									{item.duration && (
+										<>
+											<span class="h-1 w-1 rounded-full bg-accent-red" aria-hidden="true"></span>
+											<span>{item.duration}</span>
+										</>
+									)}
+								</div>
+								<h3 class="font-display text-2xl text-slate">
+									<a
+										href={item.url}
+										target="_blank"
+										rel="noreferrer noopener"
+										class="hover:text-accent-red focus-visible:outline-brand-brick"
+										aria-label={`புதிய தாவலில் திறப்பு: ${t(item.title)}`}
+									>
+										{t(item.title)}
+									</a>
+								</h3>
+								<p class="text-sm text-slate/70">{t(item.source)}</p>
+								<p class="text-base text-slate/80">{t(item.annotation)}</p>
+							</div>
+							<div class="mt-6">
+								<a
+									href={item.url}
+									target="_blank"
+									rel="noreferrer noopener"
+									class="inline-flex items-center gap-2 text-sm font-semibold text-accent-red focus-visible:outline-brand-brick"
+									aria-label={`பார்க்க: ${t(item.title)} (${typeLabel(item.format)})`}
+								>
+									<span>{typeLabel(item.format)} திறக்க</span>
+									<svg class="h-4 w-4" viewBox="0 0 24 24" role="img" aria-hidden="true">
+										<path
+											fill="currentColor"
+											d="M5 12.75V19h6.25v2H3V12.75h2Zm14-9H11.75v2H18v6.25h2V3.75ZM19 3h-6v2h2.586l-8.293 8.293 1.414 1.414L17 6.414V9h2V3Z"
+										/>
+									</svg>
+								</a>
+							</div>
+						</article>
+					))}
+				</div>
+			</section>
+		))}
+	</article>
+</Layout>
